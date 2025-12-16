@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiteraVerse - Platform Baca Buku Digital Premium</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Platform membaca buku digital terbaik dengan koleksi lengkap dan fitur premium">
+    <meta name="keywords" content="buku digital, ebook, membaca online, literasi digital">
+    <meta name="author" content="LiteraVerse">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="LiteraVerse - Platform Baca Buku Digital">
+    <meta property="og:description" content="Baca ribuan buku digital dengan pengalaman membaca terbaik">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="https://literaverse.com">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="manifest" href="assets/icons/site.webmanifest">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    
+    <!-- Choices.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <style>
+        /* Custom CSS Variables */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-gradient: linear-gradient(135deg, #141E30 0%, #243B55 100%);
+            --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            --warning-gradient: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+            
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 20px 60px rgba(0, 0, 0, 0.12);
+            --shadow-hard: 0 30px 90px rgba(0, 0, 0, 0.15);
+            
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        /* Animation Keyframes */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); }
+        }
+        
+        @keyframes slideInFromLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInFromRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Custom Utility Classes */
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-bg {
+            background: var(--primary-gradient) !important;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-hover {
+            transition: var(--transition-smooth);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hard) !important;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        .text-stroke {
+            -webkit-text-stroke: 1px currentColor;
+            color: transparent;
+        }
+        
+        .blur-backdrop {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            border: 3px solid #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+        }
+        
+        /* Selection Color */
+        ::selection {
+            background: rgba(102, 126, 234, 0.3);
+            color: #fff;
+        }
+        
+        /* Focus Styles */
+        :focus {
+            outline: 3px solid rgba(102, 126, 234, 0.5);
+            outline-offset: 3px;
+        }
+        
+        :focus:not(:focus-visible) {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader Premium -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="book-loader">
+                <div class="book">
+                    <div class="page"></div>
+                    <div class="page"></div>
+                    <div class="page"></div>
+                    <div class="page"></div>
+                </div>
+            </div>
+            <h3 class="mt-4 text-white fw-bold">LiteraVerse</h3>
+            <p class="text-light mb-0">Loading your reading experience...</p>
+            <div class="progress mt-3" style="width: 200px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Action Buttons -->
+    <div class="quick-actions">
+        <button class="quick-action-btn" id="quickSearch" title="Quick Search">
+            <i class="fas fa-search"></i>
+        </button>
+        <button class="quick-action-btn" id="darkModeToggle" title="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="quick-action-btn" id="scrollToTop" title="Scroll to Top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button class="quick-action-btn pulse-glow" id="quickRead" title="Quick Read">
+            <i class="fas fa-book-open"></i>
+        </button>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-xl navbar-light fixed-top">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand" href="index.html">
+                <div class="brand-wrapper">
+                    <div class="brand-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="brand-text">
+                        <span class="fw-bold">Litera</span><span class="text-primary">Verse</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Main Navigation -->
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">
+                            <i class="fas fa-home me-2"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-books me-2"></i>Library
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#trending">Trending Books</a></li>
+                            <li><a class="dropdown-item" href="#new-releases">New Releases</a></li>
+                            <li><a class="dropdown-item" href="#best-sellers">Best Sellers</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="bookshelf.html">My Bookshelf</a></li>
+                            <li><a class="dropdown-item" href="dashboard.html">Reading Dashboard</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-tags me-2"></i>Categories
+                        </a>
+                        <ul class="dropdown-menu mega-menu">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h6 class="dropdown-header">Fiction</h6>
+                                    <a class="dropdown-item" href="#">Science Fiction</a>
+                                    <a class="dropdown-item" href="#">Fantasy</a>
+                                    <a class="dropdown-item" href="#">Mystery</a>
+                                    <a class="dropdown-item" href="#">Romance</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <h6 class="dropdown-header">Non-Fiction</h6>
+                                    <a class="dropdown-item" href="#">Biography</a>
+                                    <a class="dropdown-item" href="#">History</a>
+                                    <a class="dropdown-item" href="#">Science</a>
+                                    <a class="dropdown-item" href="#">Self-Help</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <h6 class="dropdown-header">Academic</h6>
+                                    <a class="dropdown-item" href="#">Technology</a>
+                                    <a class="dropdown-item" href="#">Business</a>
+                                    <a class="dropdown-item" href="#">Medicine</a>
+                                    <a class="dropdown-item" href="#">Law</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <h6 class="dropdown-header">Special</h6>
+                                    <a class="dropdown-item" href="#">Audiobooks</a>
+                                    <a class="dropdown-item" href="#">Interactive</a>
+                                    <a class="dropdown-item" href="#">Limited Edition</a>
+                                    <a class="dropdown-item" href="#">All Categories</a>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">
+                            <i class="fas fa-star me-2"></i>Features
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="community.html">
+                            <i class="fas fa-users me-2"></i>Community
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">
+                            <i class="fas fa-tag me-2"></i>Pricing
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Right Actions -->
+                <div class="navbar-actions">
+                    <!-- Search -->
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="search-input" placeholder="Search books, authors...">
+                            <div class="search-results"></div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications -->
+                    <div class="dropdown notification-dropdown">
+                        <button class="btn btn-notification" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-count">3</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <div class="notification-header">
+                                <h6>Notifications</h6>
+                                <a href="#" class="mark-all-read">Mark all as read</a>
+                            </div>
+                            <div class="notification-list">
+                                <!-- Notifications will be loaded here -->
+                            </div>
+                            <div class="notification-footer">
+                                <a href="#" class="view-all">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Menu -->
+                    <div class="dropdown user-dropdown">
+                        <button class="btn btn-user" type="button" data-bs-toggle="dropdown">
+                            <div class="user-avatar">
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=LiteraVerse" alt="User">
+                            </div>
+                            <span class="user-name d-none d-xl-inline">John Reader</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <div class="dropdown-header">
+                                    <h6>John Reader</h6>
+                                    <p class="text-muted mb-0">Premium Member</p>
+                                </div>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-3"></i>My Profile</a></li>
+                            <li><a class="dropdown-item" href="dashboard.html"><i class="fas fa-chart-line me-3"></i>Dashboard</a></li>
+                            <li><a class="dropdown-item" href="bookshelf.html"><i class="fas fa-bookmark me-3"></i>My Bookshelf</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-3"></i>Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-3"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-bg-shape shape-1"></div>
+            <div class="hero-bg-shape shape-2"></div>
+            <div class="hero-bg-shape shape-3"></div>
+        </div>
+        
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="hero-content">
+                        <div class="hero-badges">
+                            <span class="badge bg-warning mb-3">
+                                <i class="fas fa-crown me-2"></i>#1 Reading Platform
+                            </span>
+                            <span class="badge bg-info mb-3">
+                                <i class="fas fa-rocket me-2"></i>50K+ Books
+                            </span>
+                        </div>
+                        
+                        <h1 class="hero-title display-2 fw-bold mb-4">
+                            Discover <span class="gradient-text">Infinite</span> Worlds in Every 
+                            <span class="gradient-text">Page</span>
+                        </h1>
+                        
+                        <p class="hero-description lead mb-5">
+                            Experience reading like never before with our curated collection of 50,000+ digital books, 
+                            advanced reading features, and a vibrant community of book lovers.
+                        </p>
+                        
+                        <div class="hero-actions">
+                            <button class="btn btn-primary btn-lg me-3">
+                                <i class="fas fa-play me-2"></i>Start Reading Free
+                            </button>
+                            <button class="btn btn-outline-primary btn-lg">
+                                <i class="fas fa-play-circle me-2"></i>Watch Demo
+                            </button>
+                        </div>
+                        
+                        <div class="hero-features mt-5">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="feature-item">
+                                        <i class="fas fa-book feature-icon"></i>
+                                        <div>
+                                            <h4 class="feature-value">50K+</h4>
+                                            <p class="feature-label">Books</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="feature-item">
+                                        <i class="fas fa-users feature-icon"></i>
+                                        <div>
+                                            <h4 class="feature-value">1M+</h4>
+                                            <p class="feature-label">Readers</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="feature-item">
+                                        <i class="fas fa-star feature-icon"></i>
+                                        <div>
+                                            <h4 class="feature-value">4.9</h4>
+                                            <p class="feature-label">Rating</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="hero-visual">
+                        <div class="visual-container">
+                            <div class="main-visual floating">
+                                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                                     alt="Reading Experience" class="img-fluid rounded-4">
+                            </div>
+                            
+                            <!-- Floating Cards -->
+                            <div class="floating-card card-1 glass-effect">
+                                <i class="fas fa-book-reader"></i>
+                                <span>Interactive<br>Reading</span>
+                            </div>
+                            <div class="floating-card card-2 glass-effect">
+                                <i class="fas fa-headphones"></i>
+                                <span>Audiobook<br>Ready</span>
+                            </div>
+                            <div class="floating-card card-3 glass-effect">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Mobile<br>Optimized</span>
+                            </div>
+                            
+                            <!-- Stats Cards -->
+                            <div class="stats-card stats-1">
+                                <div class="stats-content">
+                                    <h5>24</h5>
+                                    <p>Books Read</p>
+                                </div>
+                            </div>
+                            <div class="stats-card stats-2">
+                                <div class="stats-content">
+                                    <h5>156h</h5>
+                                    <p>Reading Time</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Why Choose <span class="gradient-text">LiteraVerse</span>?</h2>
+                <p class="section-subtitle">Experience the future of reading with our premium features</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Feature 1 -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card card-hover text-center">
+                        <div class="feature-icon-wrapper">
+                            <div class="feature-icon bg-primary-gradient">
+                                <i class="fas fa-book-open-reader"></i>
+                            </div>
+                        </div>
+                        <h4 class="feature-title mt-4">Immersive Reading</h4>
+                        <p class="feature-description">Customizable fonts, spacing, themes, and night mode for perfect reading comfort.</p>
+                        <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card card-hover text-center">
+                        <div class="feature-icon-wrapper">
+                            <div class="feature-icon bg-success-gradient">
+                                <i class="fas fa-cloud-download-alt"></i>
+                            </div>
+                        </div>
+                        <h4 class="feature-title mt-4">Offline Reading</h4>
+                        <p class="feature-description">Download books and read anywhere, anytime without internet connection.</p>
+                        <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card card-hover text-center">
+                        <div class="feature-icon-wrapper">
+                            <div class="feature-icon bg-warning-gradient">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                        </div>
+                        <h4 class="feature-title mt-4">AI Recommendations</h4>
+                        <p class="feature-description">Personalized book suggestions based on your reading habits and preferences.</p>
+                        <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card card-hover text-center">
+                        <div class="feature-icon-wrapper">
+                            <div class="feature-icon bg-danger-gradient">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <h4 class="feature-title mt-4">Reading Analytics</h4>
+                        <p class="feature-description">Track your progress, set goals, and improve reading habits with insights.</p>
+                        <a href="#" class="feature-link">Learn more <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Advanced Features -->
+            <div class="row mt-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="advanced-feature">
+                        <div class="feature-media">
+                            <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Advanced Features" class="img-fluid rounded-3">
+                            <div class="media-badge">New</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="advanced-feature-content">
+                        <h3>Advanced Reading Features</h3>
+                        <p class="lead">Take your reading experience to the next level with our advanced features.</p>
+                        
+                        <ul class="feature-list">
+                            <li>
+                                <i class="fas fa-check-circle text-success me-3"></i>
+                                <span>Text-to-Speech with multiple voices</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-success me-3"></i>
+                                <span>Dictionary and translation integration</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-success me-3"></i>
+                                <span>Note-taking and highlighting tools</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-success me-3"></i>
+                                <span>Bookmark synchronization across devices</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-success me-3"></i>
+                                <span>Reading speed optimization</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle text-success me-3"></i>
+                                <span>Accessibility features for all readers</span>
+                            </li>
+                        </ul>
+                        
+                        <button class="btn btn-primary mt-4">
+                            <i class="fas fa-play-circle me-2"></i>See Features in Action
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Books -->
+    <section id="trending" class="trending-section">
+        <div class="container">
+            <div class="section-header d-flex justify-content-between align-items-center mb-5" data-aos="fade-up">
+                <div>
+                    <h2 class="section-title">Trending <span class="gradient-text">This Week</span></h2>
+                    <p class="section-subtitle">Most popular books among our readers</p>
+                </div>
+                <div class="trending-nav">
+                    <button class="btn btn-outline-primary me-2 trending-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="btn btn-outline-primary trending-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="swiper trending-swiper" data-aos="fade-up">
+                <div class="swiper-wrapper" id="trendingBooks">
+                    <!-- Trending books will be loaded here -->
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories-section">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Browse by <span class="gradient-text">Category</span></h2>
+                <p class="section-subtitle">Explore books from various genres and topics</p>
+            </div>
+            
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Categories will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- New Releases -->
+    <section id="new-releases" class="new-releases-section bg-light">
+        <div class="container">
+            <div class="section-header d-flex justify-content-between align-items-center mb-5" data-aos="fade-up">
+                <div>
+                    <h2 class="section-title">New <span class="gradient-text">Releases</span></h2>
+                    <p class="section-subtitle">Freshly added books to our collection</p>
+                </div>
+                <a href="#" class="btn btn-outline-primary">View All Releases</a>
+            </div>
+            
+            <div class="row" id="newReleasesGrid">
+                <!-- New releases will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Reading Challenge -->
+    <section id="challenge" class="challenge-section bg-dark-gradient text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="challenge-content">
+                        <h2 class="display-4 fw-bold mb-4">2023 Reading <span class="text-warning">Challenge</span></h2>
+                        <p class="lead mb-4">Join thousands of readers in our annual reading challenge. Set goals, track progress, and earn badges!</p>
+                        
+                        <div class="challenge-stats row mb-4">
+                            <div class="col-6 col-md-3">
+                                <div class="stat-box">
+                                    <h3 class="stat-number">5,234</h3>
+                                    <p class="stat-label">Participants</p>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="stat-box">
+                                    <h3 class="stat-number">248K</h3>
+                                    <p class="stat-label">Books Read</p>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="stat-box">
+                                    <h3 class="stat-number">89</h3>
+                                    <p class="stat-label">Days Left</p>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="stat-box">
+                                    <h3 class="stat-number">75</h3>
+                                    <p class="stat-label">Prizes</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-progress mb-4">
+                            <div class="progress-label d-flex justify-content-between mb-2">
+                                <span>Your Progress</span>
+                                <span>8/12 Books</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 66%"></div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-light btn-lg">
+                            <i class="fas fa-trophy me-2"></i>Join Challenge
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="challenge-visual">
+                        <div class="achievement-showcase">
+                            <div class="achievement-card">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <div class="achievement-content">
+                                    <h5>Reading Streak</h5>
+                                    <p>Read for 30 consecutive days</p>
+                                </div>
+                            </div>
+                            <div class="achievement-card">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="achievement-content">
+                                    <h5>Book Explorer</h5>
+                                    <p>Read 50 different genres</p>
+                                </div>
+                            </div>
+                            <div class="achievement-card">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                                <div class="achievement-content">
+                                    <h5>Speed Reader</h5>
+                                    <p>Complete 10 books in a month</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">What Readers <span class="gradient-text">Say</span></h2>
+                <p class="section-subtitle">Join our community of satisfied readers</p>
+            </div>
+            
+            <div class="swiper testimonials-swiper" data-aos="fade-up">
+                <div class="swiper-wrapper">
+                    <!-- Testimonials will be loaded here -->
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section bg-light">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Choose Your <span class="gradient-text">Plan</span></h2>
+                <p class="section-subtitle">Select the perfect plan for your reading journey</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h4 class="pricing-title">Free</h4>
+                            <div class="pricing-price">
+                                <span class="price">$0</span>
+                                <span class="period">/month</span>
+                            </div>
+                        </div>
+                        <div class="pricing-body">
+                            <ul class="pricing-features">
+                                <li><i class="fas fa-check text-success me-2"></i>100 Free Books</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Basic Reading Features</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Community Access</li>
+                                <li><i class="fas fa-times text-muted me-2"></i>Offline Reading</li>
+                                <li><i class="fas fa-times text-muted me-2"></i>Premium Features</li>
+                                <li><i class="fas fa-times text-muted me-2"></i>Priority Support</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-footer">
+                            <button class="btn btn-outline-primary w-100">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="pricing-header">
+                            <h4 class="pricing-title">Premium</h4>
+                            <div class="pricing-price">
+                                <span class="price">$9.99</span>
+                                <span class="period">/month</span>
+                            </div>
+                        </div>
+                        <div class="pricing-body">
+                            <ul class="pricing-features">
+                                <li><i class="fas fa-check text-success me-2"></i>Unlimited Books</li>
+                                <li><i class="fas fa-check text-success me-2"></i>All Reading Features</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Offline Reading</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Audiobooks Included</li>
+                                <li><i class="fas fa-check text-success me-2"></i>AI Recommendations</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Priority Support</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-footer">
+                            <button class="btn btn-primary w-100">Get Premium</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h4 class="pricing-title">Family</h4>
+                            <div class="pricing-price">
+                                <span class="price">$19.99</span>
+                                <span class="period">/month</span>
+                            </div>
+                        </div>
+                        <div class="pricing-body">
+                            <ul class="pricing-features">
+                                <li><i class="fas fa-check text-success me-2"></i>6 Family Members</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Unlimited Everything</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Kids Safe Mode</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Family Library</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Personalized Profiles</li>
+                                <li><i class="fas fa-check text-success me-2"></i>24/7 Support</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-footer">
+                            <button class="btn btn-outline-primary w-100">Choose Family</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta-section bg-primary-gradient">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8" data-aos="zoom-in">
+                    <h2 class="display-4 fw-bold text-white mb-4">Start Your Reading Journey Today</h2>
+                    <p class="lead text-white mb-5">Join 1 million+ readers who have transformed their reading experience with LiteraVerse.</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-light btn-lg me-3">
+                            <i class="fas fa-user-plus me-2"></i>Sign Up Free
+                        </button>
+                        <button class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-play-circle me-2"></i>Watch Tour
+                        </button>
+                    </div>
+                    <p class="text-white-50 mt-3">No credit card required • Cancel anytime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <div class="footer-brand mb-4">
+                        <div class="brand-wrapper">
+                            <div class="brand-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="brand-text">
+                                <span class="fw-bold">Litera</span><span class="text-primary">Verse</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="footer-text mb-4">
+                        The ultimate digital reading platform that transforms how you experience books. 
+                        Join our community of passionate readers today.
+                    </p>
+                    <div class="footer-newsletter mb-4">
+                        <h6>Subscribe to our newsletter</h6>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5">
+                    <h5 class="footer-title">Platform</h5>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#">Get App</a></li>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5">
+                    <h5 class="footer-title">Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="community.html">Community</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Partners</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5">
+                    <h5 class="footer-title">Legal</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 mb-5">
+                    <h5 class="footer-title">Download App</h5>
+                    <div class="app-download">
+                        <a href="#" class="app-store">
+                            <i class="fab fa-apple me-2"></i>
+                            <div>
+                                <span>Download on the</span>
+                                <strong>App Store</strong>
+                            </div>
+                        </a>
+                        <a href="#" class="play-store">
+                            <i class="fab fa-google-play me-2"></i>
+                            <div>
+                                <span>Get it on</span>
+                                <strong>Google Play</strong>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-5">
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 LiteraVerse. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="footer-extra">
+                        <span class="me-3">Made with <i class="fas fa-heart text-danger"></i> for readers</span>
+                        <a href="#" class="text-decoration-underline">Change Region</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Book Detail Modal -->
+    <div class="modal fade" id="bookDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Search Modal -->
+    <div class="modal fade" id="quickSearchModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="search-modal-content">
+                        <input type="text" class="form-control form-control-lg" placeholder="Search books, authors, categories...">
+                        <div class="search-suggestions"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reading Mode Modal -->
+    <div class="modal fade" id="readingModeModal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-fullscreen-md-down">
+            <div class="modal-content">
+                <!-- Reading interface will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Main App Script -->
+    <script src="script.js" type="module"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered: ', registration);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
