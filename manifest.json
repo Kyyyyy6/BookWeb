@@ -1,0 +1,109 @@
+{
+  "name": "LiteraVerse",
+  "short_name": "LiteraVerse",
+  "description": "Premium Digital Book Reading Platform",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": [
+    "books",
+    "education",
+    "entertainment"
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/screenshots/home.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "Home Screen"
+    },
+    {
+      "src": "/assets/screenshots/reader.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "Reading Interface"
+    },
+    {
+      "src": "/assets/screenshots/library.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "Digital Library"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Continue Reading",
+      "short_name": "Continue",
+      "description": "Continue reading your last book",
+      "url": "/reader.html?continue=true"
+    },
+    {
+      "name": "Browse Library",
+      "short_name": "Library",
+      "description": "Browse the digital library",
+      "url": "/#library"
+    },
+    {
+      "name": "Reading Challenge",
+      "short_name": "Challenge",
+      "description": "Join the reading challenge",
+      "url": "/#challenge"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.literaverse.app",
+      "id": "com.literaverse.app"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/app/literaverse/id123456789"
+    }
+  ],
+  "prefer_related_applications": false
+}
